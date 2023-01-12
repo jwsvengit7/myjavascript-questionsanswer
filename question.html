@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="answer.css">
+	<title></title>
+</head>
+<body>
+<h3 id="show"></h3>
+<div id="app">
+</div>
+<div class="answer"></div>
+<script type="text/javascript">
+
+	var content=document.querySelector("#app");
+	var show=document.querySelector("#show");
+	var savedAnswer=document.querySelector(".answer");
+var x=1
+let person = prompt("Please enter your name", "");
+let val;
+if (person == null || person == "") {
+  val = "User cancelled the prompt.";
+  confirm(val)
+} else {
+confirm("confirmed "+person)
+  val = "Hello " + person + "! How are you today?";
+  show.innerHTML=val
+
+	function question(question1,question2,divid) {
+		x++;
+		 var sum=0;
+		 var sum2=0;
+		for (let i in question1) {			
+		sum+=question1[i]
+		}
+		for (let x in question2) {
+					sum2+=question2[x]
+			}
+			content.innerHTML+=`<p>
+
+
+			<li>${x} Given that x is ${sum} + y is ${sum2} and they divide / by ${divid} what will be the answer <br>
+			<button>${sum}</button>&nbsp; 
+			<button>+</button> &nbsp; 
+			<button>${sum2}</button> / ${divid}= 
+			<input id="answer${x}" >
+			<button id="stopanswer${x}" onclick="answers(${sum},${sum2},${divid},${x})">submit</button>
+			</li></p>`	
+	}
+
+}
+
+ var score=0
+	const answers =(answer1,answer2,divid,x)=>{
+		
+	var answer=document.getElementById("answer"+x).value;
+	var stopanswer=document.getElementById("stopanswer"+x)
+		 		stopanswer.hidden="true";
+		 		let clean=(answer1+answer2)/divid;
+		 		if(clean==answer){
+		 			score++;
+		 			alert("correct answer")
+		 			 savedAnswer.innerHTML=score
+			}else{
+				alert("wrong answer")
+			}
+
+			if(x==10){
+				alert("Hello "+person+" you have asnswered all the question Your score is "+score)
+			}		
+
+	}
+
+
+	question([9],[0],9)
+	question([11],[5],2)
+	question([5],[5],5)
+	question([15],[12],3)
+	question([2],[51],4)
+	question([1,10,7,8,9],[13,4,5,7],1)
+	question([1,12,3,3,9],[1,2,3,,7],14)
+	question([11,3,3,3,91],[1,7],34)
+	question([1,10,3,,9],[3,4,7],4)
+
+
+
+
+
+
+</script>
+</body>
+</html>
